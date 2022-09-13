@@ -1,0 +1,16 @@
+[Unit]
+Description=fab3F Twitch Bot
+Wants=network-online.target
+After=network-online.target systemd-networkd-wait-online.service
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/fab3F_twitch_bot/bot.py
+Restart=on-failure
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
