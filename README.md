@@ -7,7 +7,7 @@
 
 # Welcome to my Twitch Bot
 
-You can check out my Twitch Bot on my [Homepage](https://fab3F.github.io/projects/twitch_bot). This Bot ist made for hosting on your own Raspberry Pi or something else.
+You can check out my Twitch Bot on my [Homepage](https://fab3F.github.io/projects/twitch_bot). There you will find all information about the bot. This Bot ist made for hosting on your own Raspberry Pi or something else.
 
 
 ## Hi there I am fab3F.

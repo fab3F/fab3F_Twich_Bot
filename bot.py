@@ -66,6 +66,14 @@ async def event_message(ctx):
     # relay message to command callbacks
     await bot.handle_commands(ctx)
 
+@bot.command(name='discord')
+async def on_count(ctx):
+    """
+    Runs when the discord command was issued in the Twitch chat and sends the
+    current discord link to the chat
+    """
+    await ctx.send(f'du kannst dem Discord unter https://fab3F.github.io/link/discord beitreten')
+
 
 @bot.command(name='count')
 async def on_count(ctx):
