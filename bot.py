@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__author__      = "fab3F"
-__copyright__   = "Twitch Bot"
-__credits__     = ["k0nze: https://github.com/k0nze"]
+__author__ = "fab3F"
+__copyright__ = "Twitch Bot"
+__credits__ = ["k0nze: https://github.com/k0nze"]
 
-__license__     = ""
-__version__     = "1.0"
-__contact__     = {
-                    "Twitch": "https://fab3F.github.io/link/twitch",
-                    "Youtube": "https://fab3F.github.io/link/youtube",
-                    "Twitter": "https://fab3F.github.io/link/twitter",
-                    "Instagram": "https://fab3F.github.io/link/instagram",
-                    "Discord": "https://fab3F.github.io/link/discord",
-                }
+__license__ = ""
+__version__ = "1.0"
+__contact__ = {
+    "Twitch": "https://fab3F.github.io/link/twitch",
+    "Youtube": "https://fab3F.github.io/link/youtube",
+    "Twitter": "https://fab3F.github.io/link/twitter",
+    "Instagram": "https://fab3F.github.io/link/instagram",
+    "Discord": "https://fab3F.github.io/link/discord",
+}
 
 import os
 import json
@@ -35,7 +35,6 @@ BOT_PREFIX = os.environ.get('BOT_PREFIX')
 CHANNEL = os.environ.get('CHANNEL')
 
 JSON_FILE = str(os.path.dirname(os.path.realpath(__file__))) + '/data.json'
-
 
 bot = commands.Bot(
     irc_token=TMI_TOKEN,
@@ -66,43 +65,53 @@ async def event_message(ctx):
     # relay message to command callbacks
     await bot.handle_commands(ctx)
 
+
 @bot.command(name='discord')
-async def on_count(ctx):
+async def on_discord(ctx):
     """
     Runs when the discord command was issued in the Twitch chat and sends the
     current discord link to the chat
     """
-    await ctx.send(f'du kannst dem Discord unter https://fab3F.github.io/link/discord beitreten')
+    await ctx.send(f'Du kannst dem Discord unter https://fab3F.github.io/link/discord beitreten')
 
 
-@bot.command(name='count')
+@bot.command(name='help')
+async def on_help(ctx):
+    """
+    Runs when the help command was issued in the Twitch chat and sends the
+    current project link to the chat
+    """
+    await ctx.send(f'Unter https://fab3F.github.io/projects/twitch_bot findest du alle Infos zum Bot')
+
+
+@bot.command(name='zählen')
 async def on_count(ctx):
     """
     Runs when the count command was issued in the Twitch chat and sends the 
     current count to the chat
     """
     count = get_count()
-    await ctx.send(f'current count {count}')
+    await ctx.send(f'Momentaner Stand: {count}')
 
 
-@bot.command(name='add')
+@bot.command(name='plus')
 async def on_add(ctx):
     """
     Runs when the add command was issued in the Twitch chat and adds to the 
     count
     """
     # check if user who issued the command is a mod
-    if(ctx.author.is_mod):
+    if (ctx.author.is_mod):
 
         # parse add command
         command_string = ctx.message.content
         # remove '!add' and white space
-        command_string = command_string.replace('!add', '').strip()
+        command_string = command_string.replace('!plus', '').strip()
         # parse int
         value = 0
 
         try:
-            value = int(command_string) 
+            value = int(command_string)
         except ValueError:
             value = 0
 
@@ -111,27 +120,30 @@ async def on_add(ctx):
             count = get_count()
             count = count + value
             update_count(count)
-            await ctx.send(f'updated count to {count}')
+            await ctx.send(f'Zahl wurde zu {count} aktualisiert')
+
+    else:
+        await ctx.send(f'Du bist kein Moderator')
 
 
-@bot.command(name='sub')
+@bot.command(name='minus')
 async def on_sub(ctx):
     """
     Runs when the add command was issued in the Twitch chat and subtracts from 
     the count
     """
     # check if user who issued the command is a mod
-    if(ctx.author.is_mod):
+    if (ctx.author.is_mod):
 
         # parse add command
         command_string = ctx.message.content
         # remove '!sub' and white space
-        command_string = command_string.replace('!sub', '').strip()
+        command_string = command_string.replace('!minus', '').strip()
         # parse int
         value = 0
 
         try:
-            value = int(command_string) 
+            value = int(command_string)
         except ValueError:
             value = 0
 
@@ -140,7 +152,18 @@ async def on_sub(ctx):
             count = get_count()
             count = count - value
             update_count(count)
-            await ctx.send(f'updated count to {count}')
+            await ctx.send(f'Zahl wurde zu {count} aktualisiert')
+
+    else:
+        await ctx.send(f'Du bist kein Moderator')
+
+
+@bot.command()
+async def on_(ctx):
+    """
+    Runs when any other command is executed
+    """
+    await ctx.send(f'Dieser Befehl ist nicht verfügbar')
 
 
 def get_count():
