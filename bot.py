@@ -63,7 +63,9 @@ async def event_message(ctx):
         return
 
     # relay message to command callbacks
-    await bot.handle_commands(ctx)
+
+    if not await bot.handle_commands(ctx):
+        await ctx.send(f'Dieser Befehl ist nicht verfügbar')
 
 
 @bot.command(name='discord')
@@ -73,6 +75,7 @@ async def on_discord(ctx):
     current discord link to the chat
     """
     await ctx.send(f'Du kannst dem Discord unter https://fab3F.github.io/link/discord beitreten')
+    return True
 
 
 @bot.command(name='help')
@@ -82,6 +85,7 @@ async def on_help(ctx):
     current project link to the chat
     """
     await ctx.send(f'Unter https://fab3F.github.io/projects/twitch_bot findest du alle Infos zum Bot')
+    return True
 
 
 @bot.command(name='zählen')
@@ -92,6 +96,7 @@ async def on_count(ctx):
     """
     count = get_count()
     await ctx.send(f'Momentaner Stand: {count}')
+    return True
 
 
 @bot.command(name='plus')
@@ -125,6 +130,8 @@ async def on_add(ctx):
     else:
         await ctx.send(f'Du bist kein Moderator')
 
+    return True
+
 
 @bot.command(name='minus')
 async def on_sub(ctx):
@@ -157,13 +164,7 @@ async def on_sub(ctx):
     else:
         await ctx.send(f'Du bist kein Moderator')
 
-
-@bot.command()
-async def on_(ctx):
-    """
-    Runs when any other command is executed
-    """
-    await ctx.send(f'Dieser Befehl ist nicht verfügbar')
+    return True
 
 
 def get_count():
