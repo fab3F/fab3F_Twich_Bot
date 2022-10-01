@@ -10,6 +10,9 @@
 You can check out my Twitch Bot on my [Homepage](https://fab3F.github.io/projects/twitch_bot). There you will find all information about the bot. This Bot ist made for hosting on your own Raspberry Pi or something else.
 
 
+----------------------------------------------------------------
+
+
 ## Hi there I am fab3F.
 
 Go to my GitHub Page [fab3F.github.io](https://fab3F.github.io) or to the EasyFlick Homepage [easyflick.us.to](https://easyflick.us.to) and join the [Discord Server](https://fab3f.github.io/link/discord)
