@@ -3,7 +3,7 @@
 
 __author__ = "fab3F"
 __copyright__ = "Twitch Bot"
-__credits__ = ["k0nze: https://github.com/k0nze"]
+__credits__ = ["NinjaBunny9000: https://github.com/NinjaBunny9000/barebones-twitch-bot"]
 
 __license__ = ""
 __version__ = "1.0"
