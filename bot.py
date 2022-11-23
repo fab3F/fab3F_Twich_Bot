@@ -84,7 +84,7 @@ async def on_help(ctx):
     Runs when the help command was issued in the Twitch chat and sends the
     current project link to the chat
     """
-    await ctx.send(f'Unter https://fab3F.github.io/projects/twitch_bot findest du alle Infos zum Bot')
+    await ctx.send(f'Unter https://fab3F.github.io/projects/twitchbot findest du alle Infos zum Bot')
     return True
 
 
